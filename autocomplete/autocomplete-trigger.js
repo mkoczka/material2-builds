@@ -180,6 +180,9 @@ export var MdAutocompleteTrigger = (function () {
     };
     MdAutocompleteTrigger.prototype._handleBlur = function (newlyFocusedTag) {
         this._onTouched();
+        if (newlyFocusedTag == null) {
+            newlyFocusedTag = document.activeElement.className.indexOf('mat-option') >= 0 ? 'MD-OPTION' : '';
+        }
         // Only emit blur event if the new focus is *not* on an option.
         if (newlyFocusedTag !== 'MD-OPTION') {
             this._blurStream.next(null);
